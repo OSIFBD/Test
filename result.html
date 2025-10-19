@@ -30,7 +30,8 @@ async function loadResult() {
   }
 
   try {
-    const response = await fetch('data.json');
+    // ✅ Fixed fetch line:
+    const response = await fetch('https://raw.githubusercontent.com/OSIFBD/Test/main/data.json');
     const data = await response.json();
     const student = data.find(s => s.studentId === studentId);
 
