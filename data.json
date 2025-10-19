@@ -1,0 +1,26 @@
+[
+  {
+    "studentId": "OSD_2510180002",
+    "name": "John Doe",
+    "fatherName": "Richard Doe",
+    "course": "Electrician",
+    "subjects": ["Electrical Safety","Circuit Design","Wiring","Maintenance","AC/DC Basics","Troubleshooting","Installation","Testing"],
+    "marks": [86,79,89,82,80,84,95,76],
+    "total": 671,
+    "outOf": 800,
+    "grade": "A+",
+    "dateOfIssue": "25-11-2025"
+  },
+  {
+    "studentId": "OSD_2510180003",
+    "name": "Alice Smith",
+    "fatherName": "Robert Smith",
+    "course": "ECCE",
+    "subjects": ["Child Psychology","Activity Planning","Storytelling","Arts & Crafts","Health & Safety","Nutrition","Play Methods","Observation"],
+    "marks": [88,84,93,76,75,83,84,81],
+    "total": 664,
+    "outOf": 800,
+    "grade": "A+",
+    "dateOfIssue": "25-11-2025"
+  }
+]
