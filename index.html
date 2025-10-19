@@ -1,76 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Orbital Studies - Student Portal</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background: #f5f5f5;
-      padding: 50px;
-    }
-    h1 {
-      color: #2c3e50;
-    }
-    input {
-      padding: 10px;
-      width: 250px;
-      font-size: 16px;
-      margin-top: 20px;
-    }
-    button {
-      padding: 10px 20px;
-      margin: 10px;
-      background-color: #007bff;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    footer {
-      margin-top: 60px;
-      color: #555;
-      font-size: 14px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orbital Studies - Student Portal</title>
+<style>
+body { font-family: Arial, sans-serif; text-align: center; background: #f5f5f5; padding: 50px; }
+h1 { color: #2c3e50; }
+input { padding: 10px; width: 250px; font-size: 16px; margin-top: 20px; }
+button { padding: 10px 20px; margin: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+button:hover { background-color: #0056b3; }
+footer { margin-top: 60px; color: #555; font-size: 14px; }
+</style>
 </head>
 <body>
-  <h1>Orbital Studies - Student Portal</h1>
-  <p>Enter your Student ID below to view your result or certificate.</p>
+<h1>Orbital Studies - Student Portal</h1>
+<p>Enter your Student ID below to view your result or certificate.</p>
 
-  <input type="text" id="studentId" placeholder="Enter Student ID (e.g., OSD_2510180002)" />
+<input type="text" id="studentId" placeholder="Enter Student ID (e.g., OSD_2510180002)" />
 
-  <div>
-    <button onclick="openResult()">Check Result</button>
-    <button onclick="openCertificate()">View Certificate</button>
-  </div>
+<div>
+  <button onclick="openResult()">Check Result</button>
+  <button onclick="openCertificate()">View Certificate</button>
+</div>
 
-  <footer>© 2025 Orbital Studies & Immigration Pvt. Ltd.</footer>
+<footer>© 2025 Orbital Studies & Immigration Pvt. Ltd.</footer>
 
-  <script>
-    function openResult() {
-      const id = document.getElementById("studentId").value.trim();
-      if (!id) {
-        alert("Please enter your Student ID first!");
-        return;
-      }
-      window.location.href = `result.html?id=${encodeURIComponent(id)}`;
-    }
+<script>
+function openResult() {
+  const id = document.getElementById("studentId").value.trim();
+  if (!id) { alert("Please enter your Student ID first!"); return; }
+  window.location.href = `result.html?id=${encodeURIComponent(id)}`;
+}
 
-    function openCertificate() {
-      const id = document.getElementById("studentId").value.trim();
-      if (!id) {
-        alert("Please enter your Student ID first!");
-        return;
-      }
-      window.location.href = `certificate.html?id=${encodeURIComponent(id)}`;
-    }
-  </script>
+function openCertificate() {
+  const id = document.getElementById("studentId").value.trim();
+  if (!id) { alert("Please enter your Student ID first!"); return; }
+  window.location.href = `certificate.html?id=${encodeURIComponent(id)}`;
+}
+</script>
 </body>
 </html>
