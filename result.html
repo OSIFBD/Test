@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Student Result</title>
+<style>
+body { font-family: Arial, sans-serif; padding: 20px; }
+.container { max-width: 700px; margin: auto; }
+h1 { text-align: center; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
+th { background-color: #f0f0f0; }
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>Student Result</h1>
+  <div id="result"></div>
+</div>
+
+<script>
+async function loadResult() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const studentId = urlParams.get('id');
+
+  if (!studentId) {
+    document.getElementById('result').innerHTML = '<p style="color:red;">Student ID not provided in URL.</p>';
+    return;
+  }
+
+  try {
+    const response = await fetch('data.json');
+    const data = await response.json();
+    const student = data.find(s => s.studentId === studentId);
+
+    if (!student) {
+      document.getElementById('result').innerHTML = '<p style="color:red;">No result found for this Student ID.</p>';
+      return;
+    }
+
+    let html = `<h2>${student.name} (${student.studentId})</h2>`;
+    html += `<p><strong>Father's Name:</strong> ${student.fatherName}</p>`;
+    html += `<p><strong>Course:</strong> ${student.course}</p>`;
+    html += `<p><strong>Date of Issue:</strong> ${student.dateOfIssue}</p>`;
+    html += `<table><tr><th>Subject</th><th>Marks</th></tr>`;
+
+    for(let i=0; i<student.subjects.length; i++){
+      html += `<tr><td>${student.subjects[i]}</td><td>${student.marks[i]}</td></tr>`;
+    }
+
+    html += `<tr><th>Total</th><th>${student.total}/${student.outOf}</th></tr>`;
+    html += `<tr><th>Grade</th><th>${student.grade}</th></tr>`;
+    html += `</table>`;
+
+    document.getElementById('result').innerHTML = html;
+  } catch(e) {
+    console.error(e);
+    document.getElementById('result').innerHTML = '<p style="color:red;">Error loading data.</p>';
+  }
+}
+
+loadResult();
+</script>
+</body>
+</html>
