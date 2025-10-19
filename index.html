@@ -14,26 +14,30 @@
 </style>
 </head>
 <body>
-<h1>Orbital Studies - Student Portal</h1>
-<p>Enter your Student ID below to view your result or certificate.</p>
-<input type="text" id="studentId" placeholder="Enter Student ID (e.g., OSD_2510180001)" />
-<div>
-  <button onclick="openResult()">Check Result</button>
-  <button onclick="openCertificate()">View Certificate</button>
-</div>
-<footer>© 2025 Orbital Studies & Immigration Pvt. Ltd.</footer>
+  <h1>Orbital Studies - Student Portal</h1>
+  <p>Enter your Student ID below to view your result or certificate.</p>
 
-<script>
-function openResult() {
-  const id = document.getElementById("studentId").value.trim();
-  if(!id){ alert("Please enter your Student ID!"); return; }
-  window.location.href = `result.html?id=${encodeURIComponent(id)}`;
-}
-function openCertificate() {
-  const id = document.getElementById("studentId").value.trim();
-  if(!id){ alert("Please enter your Student ID!"); return; }
-  window.location.href = `certificate.html?id=${encodeURIComponent(id)}`;
-}
-</script>
+  <input type="text" id="studentId" placeholder="Enter Student ID (e.g., OSD_2510180002)" />
+
+  <div>
+    <button onclick="openResult()">Check Result</button>
+    <button onclick="openCertificate()">View Certificate</button>
+  </div>
+
+  <footer>© 2025 Orbital Studies & Immigration Pvt. Ltd.</footer>
+
+  <script>
+    function openResult() {
+      const id = document.getElementById("studentId").value.trim();
+      if (!id) { alert("Please enter your Student ID!"); return; }
+      window.location.href = `result.html?id=${encodeURIComponent(id)}`;
+    }
+
+    function openCertificate() {
+      const id = document.getElementById("studentId").value.trim();
+      if (!id) { alert("Please enter your Student ID!"); return; }
+      window.location.href = `certificate.html?id=${encodeURIComponent(id)}`;
+    }
+  </script>
 </body>
 </html>
