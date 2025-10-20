@@ -5,92 +5,80 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Student Result</title>
 <style>
-  body {
-    font-family: Arial, sans-serif;
-    background: #f5f7fa;
-    text-align: center;
-    padding: 20px;
-  }
-  .card {
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 30px;
-  }
-  h2 { color: #222; }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  th, td {
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  th {
-    background: #007BFF;
-    color: white;
-  }
+body { font-family: Arial, sans-serif; padding: 20px; background: #f9f9f9; }
+.container { max-width: 700px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+h1 { text-align: center; color: #333; }
+table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+th, td { border: 1px solid #aaa; padding: 8px; text-align: center; }
+th { background-color: #f0f0f0; }
 </style>
 </head>
 <body>
-  <div class="card">
-    <h2>Student Result</h2>
-    <div id="result"></div>
-  </div>
+<div class="container">
+  <h1>Student Result</h1>
+  <div id="result"></div>
+</div>
 
-  <script>
-    async function loadResult() {
-      const params = new URLSearchParams(window.location.search);
-      const studentId = (params.get("id") || "").trim().toLowerCase();
+<script>
+async function loadResult() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const studentId = urlParams.get('id');
 
-      if (!studentId) {
-        document.getElementById("result").innerHTML = "<p>No Student ID provided.</p>";
-        return;
+  if (!studentId) {
+    document.getElementById('result').innerHTML = '<p style="color:red;">Student ID not provided in URL.</p>';
+    return;
+  }
+
+  try {
+    const response = await fetch('https://raw.githubusercontent.com/OSIFBD/Test/main/data.json');
+    const data = await response.json();
+
+    // Normalize all keys to lowercase for case-insensitive matching
+    const normalizeKeys = obj => {
+      const newObj = {};
+      for (let key in obj) {
+        newObj[key.toLowerCase()] = obj[key];
       }
+      return newObj;
+    };
 
-      try {
-        const response = await fetch("https://raw.githubusercontent.com/OSIFBD/Test/main/data.json");
-        const data = await response.json();
+    const normalizedData = data.map(s => normalizeKeys(s));
 
-        // Case-insensitive match
-        const student = data.find(s => 
-          (s.studentId || "").toString().trim().toLowerCase() === studentId
-        );
+    // Match ignoring case
+    const student = normalizedData.find(s => 
+      (s['studentid'] || '').toString().toLowerCase() === studentId.toLowerCase()
+    );
 
-        if (!student) {
-          document.getElementById("result").innerHTML = "<p>No result found for this Student ID.</p>";
-          return;
-        }
+    if (!student) {
+      document.getElementById('result').innerHTML = '<p style="color:red;">No result found for this Student ID.</p>';
+      return;
+    }
 
-        // Build HTML
-        const subjects = student.subjects?.map((subj, i) => 
-          `<tr><td>${subj}</td><td>${student.marks[i]}</td></tr>`
-        ).join('') || '';
+    // Build result display
+    let html = `<h2>${student.name || 'N/A'} (${student.studentid})</h2>`;
+    html += `<p><strong>Father's Name:</strong> ${student.fathername || 'N/A'}</p>`;
+    html += `<p><strong>Course:</strong> ${student.course || 'N/A'}</p>`;
+    html += `<p><strong>Date of Issue:</strong> ${student.dateofissue || 'N/A'}</p>`;
+    html += `<table><tr><th>Subject</th><th>Marks</th></tr>`;
 
-        document.getElementById("result").innerHTML = `
-          <p><strong>Name:</strong> ${student.name}</p>
-          <p><strong>Father's Name:</strong> ${student.fatherName}</p>
-          <p><strong>Course:</strong> ${student.course}</p>
-          <p><strong>Date of Issue:</strong> ${student.dateOfIssue}</p>
-          <table>
-            <tr><th>Subject</th><th>Marks</th></tr>
-            ${subjects}
-          </table>
-          <p><strong>Total:</strong> ${student.total}/${student.outOf}</p>
-          <p><strong>Grade:</strong> ${student.grade}</p>
-          <br>
-          <a href="certificate.html?id=${student.studentId}" target="_blank">View Certificate</a>
-        `;
-      } catch (err) {
-        document.getElementById("result").innerHTML = "<p>Error loading data.</p>";
-        console.error(err);
+    if (student.subjects && student.marks && student.subjects.length) {
+      for(let i=0; i<student.subjects.length; i++){
+        html += `<tr><td>${student.subjects[i]}</td><td>${student.marks[i]}</td></tr>`;
       }
     }
 
-    loadResult();
-  </script>
+    html += `<tr><th>Total</th><th>${student.total || 0}/${student.outof || 0}</th></tr>`;
+    html += `<tr><th>Grade</th><th>${student.grade || 'N/A'}</th></tr>`;
+    html += `</table>`;
+
+    document.getElementById('result').innerHTML = html;
+  } catch(e) {
+    console.error(e);
+    document.getElementById('result').innerHTML = '<p style="color:red;">Error loading data.</p>';
+  }
+}
+
+loadResult();
+</script>
 </body>
 </html>
