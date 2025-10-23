@@ -3,120 +3,28 @@
     "studentId": "OSD_2510180001",
     "name": "harmeet singh",
     "fatherName": "teja singh",
-    "course": "Electrician",
-    "dateOfIssue": "Thu Nov 27 2025 00:00:00 GMT+0530 (India Standard Time)",
-    "total": 661,
-    "outOf": 800,
-    "grade": "A+",
-    "subjects": [
-      "Electrical Safety",
-      "Circuit Design",
-      "Wiring",
-      "Maintenance",
-      "AC/DC Basics",
-      "Troubleshooting",
-      "Installation",
-      "Testing"
-    ],
-    "marks": [
-      91,
-      79,
-      92,
-      94,
-      75,
-      77,
-      77,
-      76
-    ]
+    "subjects": [],
+    "marks": []
   },
   {
     "studentId": "OSD_2510190001",
     "name": "Flora Rani",
     "fatherName": "Harmeet Singh",
-    "course": "Early Child Care Education(ECCE)",
-    "dateOfIssue": "Thu Nov 27 2025 00:00:00 GMT+0530 (India Standard Time)",
-    "total": 688,
-    "outOf": 800,
-    "grade": "A+",
-    "subjects": [
-      "Child Psychology",
-      "Activity Planning",
-      "Storytelling",
-      "Arts & Crafts",
-      "Health & Safety",
-      "Nutrition",
-      "Play Methods",
-      "Observation"
-    ],
-    "marks": [
-      90,
-      83,
-      91,
-      85,
-      81,
-      76,
-      88,
-      94
-    ]
+    "subjects": [],
+    "marks": []
   },
   {
     "studentId": "OSD_2510190002",
     "name": "Lakshay Verma",
     "fatherName": "Harmeet Singh",
-    "course": "Computer Basic",
-    "dateOfIssue": "Thu Nov 27 2025 00:00:00 GMT+0530 (India Standard Time)",
-    "total": 663,
-    "outOf": 800,
-    "grade": "A+",
-    "subjects": [
-      "Computer Fundamentals",
-      "MS Word",
-      "MS Excel",
-      "MS PowerPoint",
-      "Internet Basics",
-      "Typing",
-      "File Management",
-      "Email Usage"
-    ],
-    "marks": [
-      79,
-      78,
-      94,
-      81,
-      78,
-      78,
-      89,
-      86
-    ]
+    "subjects": [],
+    "marks": []
   },
   {
     "studentId": "OSD_2510190003",
     "name": "Lakshay kumar",
     "fatherName": "Harmeet Singh",
-    "course": "Computer Basic",
-    "dateOfIssue": "Thu Nov 27 2025 00:00:00 GMT+0530 (India Standard Time)",
-    "total": 716,
-    "outOf": 800,
-    "grade": "A+",
-    "subjects": [
-      "Computer Fundamentals",
-      "MS Word",
-      "MS Excel",
-      "MS PowerPoint",
-      "Internet Basics",
-      "Typing",
-      "File Management",
-      "Email Usage"
-    ],
-    "marks": [
-      85,
-      95,
-      78,
-      94,
-      90,
-      91,
-      95,
-      88
-    ]
+    "subjects": [],
+    "marks": []
   }
 ]
